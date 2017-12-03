@@ -677,6 +677,13 @@ class Page(Path, SignalEmitter):
 		else:
 			return self.basename
 
+	def get_creation_date(self):
+		tree = self.get_parsetree()
+		try:
+			return tree.meta['Creation-Date']
+		except KeyError:
+			return self.mtime
+
 	def heading_matches_pagename(self):
 		'''Returns whether the heading matches the page name.
 		Used to determine whether the page should have its heading
