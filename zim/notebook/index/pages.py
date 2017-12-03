@@ -241,8 +241,8 @@ class PagesIndexer(IndexerBase):
 
 	def update_page(self, pagename, mtime, content):
 		self.db.execute(
-			'UPDATE pages SET mtime=? WHERE name=?',
-			(mtime, pagename.name),
+			'UPDATE pages SET mtime=?, sortkey=? WHERE name=?',
+			(mtime, str(mtime), pagename.name),
 		)
 
 		row = self._select(pagename)
